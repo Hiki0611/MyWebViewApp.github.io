@@ -3,43 +3,379 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Пример сайта</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Ссылка на внешний CSS файл -->
+  <title>Toshkent Dark Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1e1e1e; /* Тёмный фон */
+      color: #ececec; /* Светлый текст */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #0a0a0a;
+      color: #f1f1f1;
+    }
+
+    h1 {
+      font-size: 2em;
+      font-weight: 700;
+    }
+
+    .hamburger {
+      font-size: 2.5em;
+      cursor: pointer;
+      color: #f1f1f1;
+    }
+
+    /* Слайдер меню */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: #232323;
+      transition: left 0.3s;
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .menu li {
+      margin: 0;
+    }
+
+    .menu a,
+    .menu button {
+      color: #ececec;
+      background-color: transparent;
+      border: 2px solid transparent;
+      font-size: 1.1em;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .menu button:hover,
+    .menu a:hover {
+      background-color: #9b59b6; /* Новый цвет для кнопок */
+      border-color: white;
+    }
+
+    /* Продукты */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 40px;
+      width: 150%;
+    }
+
+    .product {
+      width: 230px;
+      height: 330px;
+      margin: 15px;
+      text-align: center;
+      border: 1px solid #555; /* Темный бордер */
+      border-radius: 8px;
+      background-color: #2c2c2c;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform: scale(1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #555;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product img:hover {
+      transform: scale(1.1);
+    }
+
+    .product h3 {
+      margin: 10px 0;
+      font-weight: 700;
+      color: #f39c12; /* Более яркий и выразительный цвет для названий товаров */
+    }
+
+    .product button {
+      padding: 10px;
+      background-color: #3498db; /* Новый цвет кнопок */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      margin-top: 15px; /* Перемещаем кнопку вниз */
+    }
+
+    .product button:hover {
+      background-color: #2980b9; /* Более темный оттенок */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Темная тема */
+    body.dark {
+      background-color: #1e1e1e;
+      color: #ececec;
+    }
+
+    body.dark .menu {
+      background-color: #232323;
+    }
+
+    body.dark .menu button,
+    body.dark .menu a {
+      background-color: #9b59b6;
+      color: white;
+      border: 2px solid #9b59b6;
+    }
+
+    body.dark .menu button:hover,
+    body.dark .menu a:hover {
+      background-color: #ececec;
+      color: #9b59b6;
+      border-color: #9b59b6;
+    }
+
+    body.dark .product button {
+      background-color: #3498db;
+    }
+
+    body.dark .product button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Светлая тема */
+    body:not(.dark) {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    body:not(.dark) .menu {
+      background-color: #34495e;
+    }
+
+    body:not(.dark) .menu button,
+    body:not(.dark) .menu a {
+      background-color: #3498db;
+      color: white;
+      border: 2px solid #3498db;
+    }
+
+    body:not(.dark) .menu button:hover,
+    body:not(.dark) .menu a:hover {
+      background-color: #2980b9;
+      color: white;
+      border-color: #2980b9;
+    }
+
+    body:not(.dark) .product button {
+      background-color: #3498db;
+    }
+
+    body:not(.dark) .product button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Закрытие кнопки меню */
+    .menu .close-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ececec;
+      background-color: #e74c3c;
+      border: 2px solid #e74c3c;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 8px;
+      text-align: center;
+      width: auto;
+      min-width: 150px;
+      transition: background-color 0.3s;
+    }
+
+    .menu .close-button:hover {
+      background-color: #ecf0f1;
+      color: #e74c3c;
+      border-color: #e74c3c;
+    }
+
+    /* Закрытие кнопки меню на темной теме */
+    body.dark .menu .close-button {
+      background-color: #2c3e50;
+      color: white;
+      border-color: #34495e;
+    }
+
+    body.dark .menu .close-button:hover {
+      background-color: #34495e;
+      color: #e74c3c;
+      border-color: #e74c3c;
+    }
+
+    /* Анимации */
+    .product, .menu button {
+      transition: transform 0.3s ease, background-color 0.3s;
+    }
+
+    .product:hover, .menu button:hover {
+      transform: scale(1.05);
+    }
+
+    .menu {
+      transition: left 0.3s ease-out;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    .menu.closed {
+      left: -300px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Название сайта</h1>
-    <div class="hamburger">&#9776;</div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <h1>Toshkent Dark Store</h1>
   </header>
 
-  <div class="menu">
+  <div id="menu" class="menu">
     <ul>
-      <li><a href="#">Главная</a></li>
-      <li><a href="#">О нас</a></li>
-      <li><a href="#">Контакты</a></li>
-      <li><button>Тема</button></li>
+      <li><button onclick="toggleTheme()">Переключение темы</button></li>
+      <li><button onclick="toggleLanguage()">Переключение языка</button></li>
+      <li><a href="#" id="operator">Оператор</a></li>
+      <li><a href="#" id="about-us">О нас</a></li>
     </ul>
+    <button onclick="closeMenu()" class="close-button">×</button>
   </div>
 
-  <div class="products">
-    <div class="product">
-      <img src="https://via.placeholder.com/230x180" alt="Товар">
-      <h3>Товар 1</h3>
-      <button>Купить</button>
+  <main>
+    <div class="products">
+      <div class="product">
+        <img src="1-photo.jpeg" alt="Товар 1">
+        <h3>Товар 1</h3>
+        <button onclick="window.location.href='ССЫЛКА1'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="2-photo.jpeg" alt="Товар 2">
+        <h3>Товар 2</h3>
+        <button onclick="window.location.href='ССЫЛКА2'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="3-photo.jpeg" alt="Товар 3">
+        <h3>Товар 3</h3>
+        <button onclick="window.location.href='ССЫЛКА3'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="4-photo.jpeg" alt="Товар 4">
+        <h3>Товар 4</h3>
+        <button onclick="window.location.href='ССЫЛКА4'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="5-photo.jpeg" alt="Товар 5">
+        <h3>Товар 5</h3>
+        <button onclick="window.location.href='ССЫЛКА5'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="6-photo.jpeg" alt="Товар 6">
+        <h3>Товар 6</h3>
+        <button onclick="window.location.href='ССЫЛКА6'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="7-photo.jpeg" alt="Товар 7">
+        <h3>Товар 7</h3>
+        <button onclick="window.location.href='ССЫЛКА7'">Подробнее</button>
+      </div>
+      <div class="product">
+        <img src="8-photo.jpeg" alt="Товар 8">
+        <h3>Товар 8</h3>
+        <button onclick="window.location.href='ССЫЛКА8'">Подробнее</button>
+      </div>
     </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/230x180" alt="Товар">
-      <h3>Товар 2</h3>
-      <button>Купить</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/230x180" alt="Товар">
-      <h3>Товар 3</h3>
-      <button>Купить</button>
-    </div>
-    <!-- Добавьте другие товары по необходимости -->
-  </div>
+  </main>
 
-  <script src="script.js"></script> <!-- Ссылка на внешний JavaScript файл -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.left = menu.style.left === '0px' ? '-300px' : '0px';
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.left = '-300px';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+
+    let currentLanguage = 'ru';
+    function toggleLanguage() {
+      if (currentLanguage === 'ru') {
+        currentLanguage = 'uz';
+        document.querySelector('h1').innerText = 'Toshkent Dark Store';
+        document.getElementById('operator').innerText = 'Operator';
+        document.querySelectorAll('.product h3')[0].innerText = 'Tovar 1';
+        document.querySelectorAll('.product h3')[1].innerText = 'Tovar 2';
+        document.querySelectorAll('.product h3')[2].innerText = 'Tovar 3';
+        document.querySelectorAll('.product h3')[3].innerText = 'Tovar 4';
+        document.querySelectorAll('.product h3')[4].innerText = 'Tovar 5';
+        document.querySelectorAll('.product h3')[5].innerText = 'Tovar 6';
+        document.querySelectorAll('.product h3')[6].innerText = 'Tovar 7';
+        document.querySelectorAll('.product h3')[7].innerText = 'Tovar 8';
+      } else {
+        currentLanguage = 'ru';
+        document.querySelector('h1').innerText = 'Toshkent Dark Store';
+        document.getElementById('operator').innerText = 'Оператор';
+        document.querySelectorAll('.product h3')[0].innerText = 'Товар 1';
+        document.querySelectorAll('.product h3')[1].innerText = 'Товар 2';
+        document.querySelectorAll('.product h3')[2].innerText = 'Товар 3';
+        document.querySelectorAll('.product h3')[3].innerText = 'Товар 4';
+        document.querySelectorAll('.product h3')[4].innerText = 'Товар 5';
+        document.querySelectorAll('.product h3')[5].innerText = 'Товар 6';
+        document.querySelectorAll('.product h3')[6].innerText = 'Товар 7';
+        document.querySelectorAll('.product h3')[7].innerText = 'Товар 8';
+      }
+    }
+
+    document.getElementById('about-us').addEventListener('click', function() {
+      window.location.href = 'ССЫЛКА3';
+    });
+  </script>
 </body>
 </html>

@@ -80,14 +80,15 @@ h1 {
 /* Продукты */
 .products {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 40px;
   width: 100%;
 }
 
 .product {
   width: 230px;
+  height: 330px;
   margin: 15px;
   text-align: center;
   border: 1px solid #555;
@@ -199,29 +200,4 @@ body:not(.dark) .product button {
 
 body:not(.dark) .product button:hover {
   background-color: #2980b9;
-}
-
-/* Закрытие кнопки меню */
-.menu .close-button {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ececec;
-  background-color: #e74c3c;
-  border: 2px solid #e74c3c;
-  padding: 12px 20px;
-  cursor: pointer;
-  font-size: 1em;
-  border-radius: 8px;
-  text-align: center;
-  width: auto;
-  min-width: 150px;
-  transition: background-color 0.3s;
-}
-
-.menu .close-button:hover {
-  background-color: #ecf0f1;
-  color: #e74c3c;
-  border-color: #e74c3c;
 }

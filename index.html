@@ -3,47 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toshkent Dark Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <title>Пример сайта</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Ссылка на внешний CSS файл -->
 </head>
 <body>
   <header>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <h1>Toshkent Dark Store</h1>
+    <h1>Название сайта</h1>
+    <div class="hamburger">&#9776;</div>
   </header>
 
-  <div id="menu" class="menu closed">
+  <div class="menu">
     <ul>
-      <li><button onclick="toggleTheme()">Переключение темы</button></li>
-      <li><button onclick="toggleLanguage()">Переключение языка</button></li>
-      <li><a href="#" id="operator">Оператор</a></li>
-      <li><a href="#" id="about-us">О нас</a></li>
+      <li><a href="#">Главная</a></li>
+      <li><a href="#">О нас</a></li>
+      <li><a href="#">Контакты</a></li>
+      <li><button>Тема</button></li>
     </ul>
-    <button onclick="closeMenu()" class="close-button">×</button>
   </div>
 
-  <main>
-    <div class="products">
-      <div class="product">
-        <img src="1-photo.jpeg" alt="Товар 1">
-        <h3>Товар 1</h3>
-        <button onclick="window.location.href='ССЫЛКА1'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="2-photo.jpeg" alt="Товар 2">
-        <h3>Товар 2</h3>
-        <button onclick="window.location.href='ССЫЛКА2'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="3-photo.jpeg" alt="Товар 3">
-        <h3>Товар 3</h3>
-        <button onclick="window.location.href='ССЫЛКА3'">Подробнее</button>
-      </div>
-      <!-- Добавьте остальные продукты здесь -->
+  <div class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/230x180" alt="Товар">
+      <h3>Товар 1</h3>
+      <button>Купить</button>
     </div>
-  </main>
+    <div class="product">
+      <img src="https://via.placeholder.com/230x180" alt="Товар">
+      <h3>Товар 2</h3>
+      <button>Купить</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/230x180" alt="Товар">
+      <h3>Товар 3</h3>
+      <button>Купить</button>
+    </div>
+    <!-- Добавьте другие товары по необходимости -->
+  </div>
 
-  <script src="scripts.js"></script>
+  <script src="script.js"></script> <!-- Ссылка на внешний JavaScript файл -->
 </body>
 </html>

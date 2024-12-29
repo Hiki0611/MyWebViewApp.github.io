@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Toshkent Dark Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,9 +13,9 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+      font-family: 'Roboto', sans-serif;
+      background-color: #1e1e1e; /* Тёмный фон */
+      color: #ececec; /* Светлый текст */
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -25,17 +25,19 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      background-color: #2d3e50;
-      color: white;
+      background-color: #0a0a0a;
+      color: #f1f1f1;
     }
 
     h1 {
-      font-size: 1.5em;
+      font-size: 2em;
+      font-weight: 700;
     }
 
     .hamburger {
-      font-size: 2em;
+      font-size: 2.5em;
       cursor: pointer;
+      color: #f1f1f1;
     }
 
     /* Слайдер меню */
@@ -45,7 +47,7 @@
       left: -300px;
       width: 300px;
       height: 100%;
-      background-color: #34495e;
+      background-color: #232323;
       transition: left 0.3s;
       z-index: 1000;
       padding: 20px 0;
@@ -65,7 +67,7 @@
 
     .menu a,
     .menu button {
-      color: white;
+      color: #ececec;
       background-color: transparent;
       border: 2px solid transparent;
       font-size: 1.1em;
@@ -79,7 +81,7 @@
 
     .menu button:hover,
     .menu a:hover {
-      background-color: #e74c3c;
+      background-color: #9b59b6; /* Новый цвет для кнопок */
       border-color: white;
     }
 
@@ -93,84 +95,87 @@
     }
 
     .product {
-      width: 230px; /* Ширина товара увеличена */
-      height: 300px;
+      width: 230px;
+      height: 330px;
       margin: 15px;
       text-align: center;
-      border: 1px solid #ccc;
+      border: 1px solid #555; /* Темный бордер */
       border-radius: 8px;
-      background-color: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background-color: #2c2c2c;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transform: scale(1);
       transition: transform 0.3s ease-in-out, box-shadow 0.3s;
     }
 
     .product:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
 
     .product img {
       width: 100%;
-      height: 180px; /* Фото товара стало больше */
+      height: 180px;
       object-fit: cover;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #555;
       transition: transform 0.3s ease-in-out;
     }
 
     .product img:hover {
-      transform: scale(1.1); /* Добавлен эффект увеличения фото при наведении */
+      transform: scale(1.1);
     }
 
     .product h3 {
       margin: 10px 0;
+      font-weight: 700;
+      color: #f39c12; /* Более яркий и выразительный цвет для названий товаров */
     }
 
     .product button {
       padding: 10px;
-      background-color: #34495e;
+      background-color: #3498db; /* Новый цвет кнопок */
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s, box-shadow 0.3s;
+      margin-top: 15px; /* Перемещаем кнопку вниз */
     }
 
     .product button:hover {
-      background-color: #2d3e50;
+      background-color: #2980b9; /* Более темный оттенок */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     /* Темная тема */
     body.dark {
-      background-color: #2f3640;
-      color: #ecf0f1;
+      background-color: #1e1e1e;
+      color: #ececec;
     }
 
     body.dark .menu {
-      background-color: #2c3e50;
+      background-color: #232323;
     }
 
     body.dark .menu button,
     body.dark .menu a {
-      background-color: #e74c3c;
+      background-color: #9b59b6;
       color: white;
-      border: 2px solid #e74c3c;
+      border: 2px solid #9b59b6;
     }
 
     body.dark .menu button:hover,
     body.dark .menu a:hover {
-      background-color: #ecf0f1;
-      color: #e74c3c;
-      border-color: #e74c3c;
+      background-color: #ececec;
+      color: #9b59b6;
+      border-color: #9b59b6;
     }
 
     body.dark .product button {
-      background-color: #2c3e50;
+      background-color: #3498db;
     }
 
     body.dark .product button:hover {
-      background-color: #34495e;
+      background-color: #2980b9;
     }
 
     /* Светлая тема */
@@ -211,7 +216,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      color: white;
+      color: #ececec;
       background-color: #e74c3c;
       border: 2px solid #e74c3c;
       padding: 12px 20px;
@@ -325,25 +330,20 @@
   </main>
 
   <script>
-    // Переключение меню
     function toggleMenu() {
       const menu = document.getElementById('menu');
       menu.style.left = menu.style.left === '0px' ? '-300px' : '0px';
     }
 
-    // Закрытие меню
     function closeMenu() {
       const menu = document.getElementById('menu');
       menu.style.left = '-300px';
     }
 
-    // Переключение темы
     function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle('dark');
+      document.body.classList.toggle('dark');
     }
 
-    // Переключение языка
     let currentLanguage = 'ru';
     function toggleLanguage() {
       if (currentLanguage === 'ru') {
@@ -373,7 +373,6 @@
       }
     }
 
-    // Обработчик для "О нас"
     document.getElementById('about-us').addEventListener('click', function() {
       window.location.href = 'ССЫЛКА3';
     });

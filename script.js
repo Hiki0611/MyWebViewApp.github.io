@@ -1,7 +1,7 @@
-function toggleMenu() {
+document.getElementById('hamburger').addEventListener('click', function() {
     const menu = document.getElementById('menu');
     menu.style.left = menu.style.left === '0px' ? '-300px' : '0px';
-}
+});
 
 function closeMenu() {
     const menu = document.getElementById('menu');

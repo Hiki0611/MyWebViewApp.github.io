@@ -1,21 +1,15 @@
-document.getElementById('hamburger').addEventListener('click', function() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('closed');
-});
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('.menu');
+  const themeButton = document.querySelector('.menu button');
 
-function closeMenu() {
-    const menu = document.getElementById('menu');
-    menu.classList.add('closed');
-}
+  // Открытие/закрытие меню
+  hamburger.addEventListener('click', () => {
+    menu.style.left = menu.style.left === '0px' ? '-300px' : '0px';
+  });
 
-function toggleTheme() {
+  // Переключение темы
+  themeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark');
-}
-
-let currentLanguage = 'ru';
-function toggleLanguage() {
-    if (currentLanguage === 'ru') {
-        currentLanguage = 'uz';
-        document.querySelector('h1').innerText = 'Toshkent Dark Store';
-        document.getElementById('operator').innerText = 'Operator';
-        document.querySelectorAll('.product h3')[0].innerText = 'Tovar 1';
+  });
+});

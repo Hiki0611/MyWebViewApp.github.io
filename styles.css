@@ -80,7 +80,7 @@ h1 {
 /* Продукты */
 .products {
   display: flex;
-  flex-direction: column; /* Изменение на столбец */
+  flex-direction: column;
   align-items: center;
   padding: 40px;
   width: 100%;

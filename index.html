@@ -1,44 +1,61 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toshkent Dark Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Добро пожаловать на мой сайт</h1>
-    </header>
-    <main>
-        <p>Это пример текста для основной части сайта. Напиши, что ты хочешь добавить!</p>
-    </main>
-    <footer>
-        <p>&copy; 2024 Мой сайт</p>
-    </footer>
+  <header>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <h1 id="store-title">Toshkent Dark Store</h1>
+  </header>
+
+  <div id="menu" class="menu">
+    <ul>
+      <li><button onclick="toggleTheme()">Переключение темы</button></li>
+      <li><button onclick="toggleLanguage()">Переключение языка</button></li>
+      <li><a href="#" id="operator">Оператор</a></li>
+      <li><a href="#" id="about-us">О нас</a></li>
+    </ul>
+    <button onclick="closeMenu()" class="close-button">×</button>
+  </div>
+
+  <main>
+    <div class="products">
+      <div class="product">
+        <img src="1-photo.jpeg" alt="Товар 1">
+        <h3 id="product1-name">Товар 1</h3>
+        <div class="product-button">
+          <button onclick="window.location.href='ССЫЛКА1'">Подробнее</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="2-photo.jpeg" alt="Товар 2">
+        <h3 id="product2-name">Товар 2</h3>
+        <div class="product-button">
+          <button onclick="window.location.href='ССЫЛКА2'">Подробнее</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="3-photo.jpeg" alt="Товар 3">
+        <h3 id="product3-name">Товар 3</h3>
+        <div class="product-button">
+          <button onclick="window.location.href='ССЫЛКА3'">Подробнее</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="4-photo.jpeg" alt="Товар 4">
+        <h3 id="product4-name">Товар 4</h3>
+        <div class="product-button">
+          <button onclick="window.location.href='ССЫЛКА4'">Подробнее</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

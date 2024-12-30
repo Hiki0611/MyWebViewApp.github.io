@@ -434,8 +434,8 @@
             const phone = document.getElementById(`phone_${productId}`).value;
             const comment = document.getElementById(`comment_${productId}`).value;
             const message = `Заказ на продукт: ${productName}\nИмя: ${name}\nТелефон: ${phone}\nКомментарий: ${comment}`;
-            const token = 'YOUR_BOT_TOKEN';  // Токен вашего бота
-            const chatId = 'YOUR_CHAT_ID';   // Ваш chat_id
+            const token = '7857347951:AAFUGfGJlqSccNEk458GFUcY6bR3r01FK0w';  // Токен вашего бота
+            const chatId = '7518382960';   // Ваш chat_id
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
                 .then(response => response.json())

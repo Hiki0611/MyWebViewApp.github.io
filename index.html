@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page with Navbar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,60 +16,60 @@
         body {
             width: 100%;
             height: 100vh;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Light Mode */
         body.light-mode {
-            background-color: #e3f2fd;  /* Light blue background */
-            color: #1a237e;  /* Dark blue text */
+            background-color: #fafafa;
+            color: #333;
         }
 
-        /* Dark Mode */
         body.dark-mode {
-            background-color: #2f2f2f;  /* Dark background */
-            color: #f7f7f7;  /* Light text */
+            background-color: #212121;
+            color: #f1f1f1;
         }
 
-        /* Navbar Styles with Gradient */
         .navbar {
             width: 100%;
-            height: 120px;  /* Increased height */
-            background: linear-gradient(90deg, #2196f3, #4caf50);  /* Bright gradient */
+            height: 80px;
+            background-color: #333;
             color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .navbar h1 {
-            font-size: 28px;  /* Increased font size */
+            font-size: 24px;
             margin: 0;
-            text-align: center;
             flex-grow: 1;
+            text-align: center;
         }
 
-        .hamburger {
-            width: 30px;
-            height: 25px;
+        .navbar .links {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
+            gap: 15px;
         }
 
-        .hamburger div {
-            width: 100%;
-            height: 4px;
-            background-color: white;
+        .navbar .links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        /* Modal Styles */
+        .navbar .links a:hover {
+            color: #ccc;
+
+        }
+
         .modal {
             position: fixed;
             top: 0;
@@ -87,38 +89,37 @@
             display: flex;
         }
 
-        /* Button Styles */
         .modal button {
             margin: 10px;
             padding: 12px 25px;
-            background-color: #ff9800;  /* Bright orange */
+            background-color: #444;
             border: none;
-            color: #1a237e;  /* Dark blue text */
+            color: white;
             cursor: pointer;
             border-radius: 8px;
             font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s;
         }
 
         .modal button:hover {
-            background-color: #f57c00;  /* Darker orange */
-            color: white;
+            background-color: #666;
         }
 
-        /* Product Section */
         .products {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            gap: 30px;
         }
 
         .product {
-            width: 300px;
-            margin-bottom: 20px;
+            width: 80%;
+            max-width: 500px;
+            margin: 0;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.3s ease;
         }
@@ -126,92 +127,114 @@
         .product img {
             width: 100%;
             height: 200px;
-            object-fit: cover;  /* Ensure the image fits without distorting */
+            object-fit: cover;
+            border-bottom: 5px solid #444;
         }
 
         .product-content {
             padding: 15px;
             text-align: center;
-            transition: color 0.3s ease;
         }
 
         .product h3 {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 10px;
+            color: #444;
         }
 
         .product p {
-            font-size: 14px;
+            font-size: 16px;
             margin-bottom: 15px;
+            color: #666;
         }
 
         .product button {
             padding: 10px;
-            background-color: #ff9800;  /* Bright orange */
+            background-color: #444;
             border: none;
-            color: #1a237e;  /* Dark blue */
+            color: white;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         .product button:hover {
-            background-color: #f57c00;  /* Darker orange */
+            background-color: #666;
         }
 
         .product:hover {
             transform: scale(1.05);
         }
 
-        /* Hidden description */
-        .product .full-description {
-            display: none;
-            margin-top: 10px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        /* Dark Mode - Red Text for Products */
-        body.dark-mode .product-content {
-            color: #f44336;  /* Red text for products */
-        }
-
-        /* Form styles */
         .order-form {
             display: none;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
+            margin-top: 10px;
             text-align: center;
         }
 
         .order-form input,
         .order-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            width: 80%;
+            padding: 12px;
+            margin: 5px;
+            border: 2px solid #444;
             border-radius: 5px;
-            border: none;
-            font-size: 14px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f1f1f1;
         }
 
         .order-form button {
-            background-color: #ff9800;
             padding: 12px 25px;
+            background-color: #444;
             border: none;
-            color: #1a237e;
-            border-radius: 8px;
+            color: white;
             cursor: pointer;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 18px;
         }
 
         .order-form button:hover {
-            background-color: #f57c00;
+            background-color: #666;
+        }
+
+        .pagination {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            background-color: #444;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #666;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .about-section {
+            padding: 30px;
+            text-align: center;
+            font-size: 18px;
         }
     </style>
 </head>
+
 <body class="light-mode">
     <div class="navbar">
         <div class="hamburger" onclick="toggleModal()">
@@ -220,22 +243,32 @@
             <div></div>
         </div>
         <h1 id="greeting">Добро пожаловать на сайт!</h1>
+        <div class="links">
+            <a href="javascript:void(0)" onclick="showAboutSection()">О нас</a>
+            <a href="javascript:void(0)" onclick="toggleTheme()">Сменить тему</a>
+            <a href="javascript:void(0)" onclick="toggleLanguage()">Сменить язык</a>
+        </div>
     </div>
 
     <div class="modal" id="modal">
         <button id="closeBtn" onclick="toggleModal()">Закрыть</button>
         <button id="themeBtn" onclick="toggleTheme()">Переключить тему</button>
         <button id="langBtn" onclick="toggleLanguage()">Сменить язык</button>
-        <button id="aboutBtn" onclick="window.location.href = 'about.html';">О нас</button>
     </div>
 
-    <!-- Product Section -->
+    <div class="about-section" id="aboutSection" style="display:none;">
+        <h2>О нас</h2>
+        <p>Мы предоставляем лучшие продукты для вашего дома и бизнеса, обеспечивая высокое качество и доступные цены.</p>
+        <button onclick="closeAboutSection()">Закрыть</button>
+    </div>
+
     <div class="products">
-        <div class="product">
+        <!-- Product 1 -->
+        <div class="product" id="product1">
             <img src="res/1.jpg" alt="Product 1">
             <div class="product-content">
-                <h3>Продукт 1</h3>
-                <p>Описание продукта 1.</p>
+                <h3 id="title1">Продукт 1</h3>
+                <p id="description1">Описание продукта 1. Этот продукт уникален и имеет замечательные характеристики!</p>
                 <button onclick="toggleOrderForm('product1')">Заказать</button>
                 <div class="order-form" id="orderForm_product1">
                     <h3>Введите свои данные для заказа:</h3>
@@ -247,11 +280,12 @@
             </div>
         </div>
 
-        <div class="product">
+        <!-- Product 2 -->
+        <div class="product" id="product2">
             <img src="res/2.jpg" alt="Product 2">
             <div class="product-content">
-                <h3>Продукт 2</h3>
-                <p>Описание продукта 2.</p>
+                <h3 id="title2">Продукт 2</h3>
+                <p id="description2">Описание продукта 2. Это еще один уникальный продукт с отличным качеством и функциями!</p>
                 <button onclick="toggleOrderForm('product2')">Заказать</button>
                 <div class="order-form" id="orderForm_product2">
                     <h3>Введите свои данные для заказа:</h3>
@@ -263,11 +297,12 @@
             </div>
         </div>
 
-        <div class="product">
+        <!-- Product 3 -->
+        <div class="product" id="product3">
             <img src="res/3.jpg" alt="Product 3">
             <div class="product-content">
-                <h3>Продукт 3</h3>
-                <p>Описание продукта 3.</p>
+                <h3 id="title3">Продукт 3</h3>
+                <p id="description3">Этот продукт идеально подходит для использования в вашем доме и офисе, сочетая функциональность и стиль!</p>
                 <button onclick="toggleOrderForm('product3')">Заказать</button>
                 <div class="order-form" id="orderForm_product3">
                     <h3>Введите свои данные для заказа:</h3>
@@ -279,33 +314,35 @@
             </div>
         </div>
 
-        <div class="product">
+        <!-- Product 4 -->
+        <div class="product" id="product4">
             <img src="res/4.jpg" alt="Product 4">
             <div class="product-content">
-                <h3>Продукт 4</h3>
-                <p>Описание продукта 4.</p>
+                <h3 id="title4">Продукт 4</h3>
+                <p id="description4">Продукт с высокой производительностью и стильным дизайном — идеальное сочетание качества и дизайна!</p>
                 <button onclick="toggleOrderForm('product4')">Заказать</button>
                 <div class="order-form" id="orderForm_product4">
                     <h3>Введите свои данные для заказа:</h3>
                     <input type="text" placeholder="Ваше имя" id="name_product4">
                     <input type="text" placeholder="Телефон" id="phone_product4">
-                    <textarea placeholder="Комментарий" id="comment_product4"></textarea>
+                    <<textarea placeholder="Комментарий" id="comment_product4"></textarea>
                     <button onclick="sendOrderToTelegram('Продукт 4', 'product4')">Отправить заказ</button>
                 </div>
             </div>
         </div>
 
-        <div class="product">
+        <!-- Product 5 -->
+        <div class="product" id="product5">
             <img src="res/5.jpg" alt="Product 5">
             <div class="product-content">
-                <h3>Продукт 5</h3>
-                <p>Описание продукта 5.</p>
+                <h3 id="title5">Продукт 5</h3>
+                <p id="description5">Продукт с отличным соотношением цены и качества, который идеально подойдет для ваших нужд!</p>
                 <button onclick="toggleOrderForm('product5')">Заказать</button>
                 <div class="order-form" id="orderForm_product5">
                     <h3>Введите свои данные для заказа:</h3>
                     <input type="text" placeholder="Ваше имя" id="name_product5">
                     <input type="text" placeholder="Телефон" id="phone_product5">
-                    <textarea placeholder="Комментарий" id="comment_product5"></textarea>
+                    <<textarea placeholder="Комментарий" id="comment_product5"></textarea>
                     <button onclick="sendOrderToTelegram('Продукт 5', 'product5')">Отправить заказ</button>
                 </div>
             </div>
@@ -313,7 +350,42 @@
     </div>
 
     <script>
-        let currentLanguage = 'ru';  // Initial language set to Russian
+        let currentLanguage = 'ru';
+
+        const productData = {
+            'ru': {
+                titles: [
+                    "Продукт 1", "Продукт 2", "Продукт 3", "Продукт 4", "Продукт 5"
+                ],
+                descriptions: [
+                    "Описание продукта 1. Этот продукт уникален и имеет замечательные характеристики!",
+                    "Описание продукта 2. Это еще один уникальный продукт с отличным качеством и функциями!",
+                    "Этот продукт идеально подходит для использования в вашем доме и офисе, сочетая функциональность и стиль!",
+                    "Продукт с высокой производительностью и стильным дизайном — идеальное сочетание качества и дизайна!",
+                    "Продукт с отличным соотношением цены и качества, который идеально подойдет для ваших нужд!"
+                ],
+                greeting: "Добро пожаловать на сайт!",
+                closeBtn: "Закрыть",
+                themeBtn: "Переключить тему",
+                langBtn: "Сменить язык"
+            },
+            'uz': {
+                titles: [
+                    "Mahsulot 1", "Mahsulot 2", "Mahsulot 3", "Mahsulot 4", "Mahsulot 5"
+                ],
+                descriptions: [
+                    "Mahsulot 1 ta'rifi. Bu mahsulot noyob va ajoyib xususiyatlarga ega!",
+                    "Mahsulot 2 ta'rifi. Bu mahsulot yuqori sifatli va hozirda buyurtma qilish mumkin!",
+                    "Mahsulot 3 ta'rifi. Bu mahsulot sizning uyingiz va ofisingiz uchun mukammaldir!",
+                    "Mahsulot 4 ta'rifi. Yuqori samaradorlik va zamonaviy dizayn bir joyda!",
+                    "Mahsulot 5 ta'rifi. Narx va sifatni mukammal uyg'unlashtirgan mahsulot!"
+                ],
+                greeting: "Xush kelibsiz!",
+                closeBtn: "Yopish",
+                themeBtn: "Mavzuni o'zgartirish",
+                langBtn: "Tilni o'zgartirish"
+            }
+        };
 
         function toggleModal() {
             const modal = document.getElementById('modal');
@@ -322,28 +394,34 @@
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
         }
 
         function toggleLanguage() {
-            if (currentLanguage === 'ru') {
-                currentLanguage = 'uz';
-                document.body.classList.add('light-mode');
-                document.body.classList.remove('dark-mode');
-                document.getElementById('greeting').textContent = 'Xush kelibsiz!';
-                document.getElementById('closeBtn').textContent = 'Yopish';
-                document.getElementById('themeBtn').textContent = 'Mavzuni o\'zgartirish';
-                document.getElementById('langBtn').textContent = 'Tilni o\'zgartirish';
-                document.getElementById('aboutBtn').textContent = 'Biz haqimizda';
-            } else {
-                currentLanguage = 'ru';
-                document.body.classList.add('light-mode');
-                document.body.classList.remove('dark-mode');
-                document.getElementById('greeting').textContent = 'Добро пожаловать на сайт!';
-                document.getElementById('closeBtn').textContent = 'Закрыть';
-                document.getElementById('themeBtn').textContent = 'Переключить тему';
-                document.getElementById('langBtn').textContent = 'Сменить язык';
-                document.getElementById('aboutBtn').textContent = 'О нас';
+            currentLanguage = currentLanguage === 'ru' ? 'uz' : 'ru';
+            updateContent();
+        }
+
+        function updateContent() {
+            const language = productData[currentLanguage];
+
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`title${i + 1}`).textContent = language.titles[i];
+                document.getElementById(`description${i + 1}`).textContent = language.descriptions[i];
             }
+
+            document.getElementById('greeting').textContent = language.greeting;
+            document.getElementById('closeBtn').textContent = language.closeBtn;
+            document.getElementById('themeBtn').textContent = language.themeBtn;
+            document.getElementById('langBtn').textContent = language.langBtn;
+        }
+
+        function showAboutSection() {
+            document.getElementById('aboutSection').style.display = 'block';
+        }
+
+        function closeAboutSection() {
+            document.getElementById('aboutSection').style.display = 'none';
         }
 
         function toggleOrderForm(productId) {
@@ -355,17 +433,15 @@
             const name = document.getElementById(`name_${productId}`).value;
             const phone = document.getElementById(`phone_${productId}`).value;
             const comment = document.getElementById(`comment_${productId}`).value;
-
             const message = `Заказ на продукт: ${productName}\nИмя: ${name}\nТелефон: ${phone}\nКомментарий: ${comment}`;
-            const token = '7857347951:AAFUGfGJlqSccNEk458GFUcY6bR3r01FK0w';  // Replace with your bot token
-            const chatId = '7518382960';   // Replace with your chat ID
+            const token = 'YOUR_BOT_TOKEN';  // Токен вашего бота
+            const chatId = 'YOUR_CHAT_ID';   // Ваш chat_id
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
                         alert('Ваш заказ отправлен в Telegram!');
-                        document.getElementById(`orderForm_${productId}`).style.display = 'none';  // Hide form after submit
                     } else {
                         alert('Произошла ошибка при отправке заказа.');
                     }
@@ -374,6 +450,9 @@
                     alert('Произошла ошибка.');
                 });
         }
+
+        updateContent(); // Инициализация контента при загрузке страницы
     </script>
 </body>
+
 </html>

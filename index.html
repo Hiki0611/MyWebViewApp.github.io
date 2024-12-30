@@ -374,52 +374,11 @@
                     "Mahsulot 1", "Mahsulot 2", "Mahsulot 3", "Mahsulot 4", "Mahsulot 5"
                 ],
                 descriptions: [
-                    "
-                    
-                    "MUAMMO BORMI? BIZ HAL QILAMIZ!"
-
-Biz bilan hech kim sizga gap otmaydi, hech kim sizga tegmaydi.
-
-Hududingizni tartibga solamiz: hurmatsizlar joyiga tushadi, qarzdorlar kechagi
-pullarni bugun olib keladi!
-
-Pul yig‘ish, obro‘ tiklash kerakmi?
-Bu – bizning ishimiz!
-
-Siz faqat ko‘rsatib bering – biz hal qilib beramiz!
-
-“Bizning o‘tgan joyimizda faqat tartib va qoidalar qoldi.ˮ
-                    
-                    ",
-                    "
-        "ЕСТЬ ПРОБЛЕМА? МЫ РЕШАЕМ!"
-С нами никто не посмеет вас задеть, никто не посмеет тронуть.
-
-Мы приведем ваш район в порядок: хамы будут знать своё место, должники принесут вчерашние деньги уже сегодня!
-Сбор долгов, восстановление репутации?
-Это –наша работа!
-Вы только укажите – мы решим!
-Ваш телефон разрывается от звонков? Звоните нам, разберемся!
-"Там, где мы прошли, остались только порядок и правила."
-                        ",
-                    "
-        💵 SUPER TAKLIF! 💵
-100$ QIYMATLI KUPYURA 90$ evaziga
-
-Ushbu kupyura haqiqiy 100$-lik AQSH dollaridan mutlaqo farq qilmaydi. Hattoki pul sanaydigan aparat va orta osiyo bankali muammosiz qabul qilishadi!
-
-⚡ Istalgan joyda foydalanishingiz mumkin
-😎 Xavotir olmaslikka sabab bor – chunki biz ishonchli, Toshkentdagi №1 magazinmiz!
-90$ (kursga qarab som da tulashingiz ham mumkin)                    
-        ",
-                    "
-    MEGA - bu noqonuniy mollar savdosi bilan
-    shugillanadigan DeepNet (DarkNet) bilan hamkorlikda ish olib
-        boradigan maxsus magazin. Ushbu xizmatni buyurtma qilsangiz, 
-            operatorimiz sizni ushbu platformaga kiritadi
-
-    ",
-                    "tez kunda..."
+                    "Mahsulot 1 ta'rifi. Bu mahsulot noyob va ajoyib xususiyatlarga ega!",
+                    "Mahsulot 2 ta'rifi. Bu mahsulot yuqori sifatli va hozirda buyurtma qilish mumkin!",
+                    "Mahsulot 3 ta'rifi. Bu mahsulot sizning uyingiz va ofisingiz uchun mukammaldir!",
+                    "Mahsulot 4 ta'rifi. Yuqori samaradorlik va zamonaviy dizayn bir joyda!",
+                    "Mahsulot 5 ta'rifi. Narx va sifatni mukammal uyg'unlashtirgan mahsulot!"
                 ],
                 greeting: "Xizmatni tanlang!",
                 closeBtn: "Yopish",
@@ -482,9 +441,9 @@ Ushbu kupyura haqiqiy 100$-lik AQSH dollaridan mutlaqo farq qilmaydi. Hattoki pu
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
-                        alert('Ваш заказ отправлен в обработку!');
+                        alert('Ваш заказ отправлен в Telegram!');
                     } else {
-                        alert('Произошла ошибка при обработке заказа.');
+                        alert('Произошла ошибка при отправке заказа.');
                     }
                 })
                 .catch(error => {

@@ -1,381 +1,277 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toshkent Dark Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page with Navbar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #1e1e1e; /* Тёмный фон */
-      color: #ececec; /* Светлый текст */
-      transition: background-color 0.3s, color 0.3s;
-    }
+        body {
+            width: 100%;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background-color: #0a0a0a;
-      color: #f1f1f1;
-    }
+        /* Light Mode */
+        body.light-mode {
+            background-color: #e3f2fd;  /* Light blue background */
+            color: #1a237e;  /* Dark blue text */
+        }
 
-    h1 {
-      font-size: 2em;
-      font-weight: 700;
-    }
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #2f2f2f;  /* Dark background */
+            color: #f7f7f7;  /* Light text */
+        }
 
-    .hamburger {
-      font-size: 2.5em;
-      cursor: pointer;
-      color: #f1f1f1;
-    }
+        /* Navbar Styles with Gradient */
+        .navbar {
+            width: 100%;
+            height: 100px;  /* Increased height */
+            background: linear-gradient(90deg, #2196f3, #4caf50);  /* Bright gradient */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Слайдер меню */
-    .menu {
-      position: fixed;
-      top: 0;
-      left: -300px;
-      width: 300px;
-      height: 100%;
-      background-color: #232323;
-      transition: left 0.3s;
-      z-index: 1000;
-      padding: 20px 0;
-    }
+        .hamburger {
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
 
-    .menu ul {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+        }
 
-    .menu li {
-      margin: 0;
-    }
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            z-index: 1000;
+        }
 
-    .menu a,
-    .menu button {
-      color: #ececec;
-      background-color: transparent;
-      border: 2px solid transparent;
-      font-size: 1.1em;
-      padding: 12px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-      width: 100%;
-      text-align: left;
-      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    }
+        .modal.active {
+            display: flex;
+        }
 
-    .menu button:hover,
-    .menu a:hover {
-      background-color: #9b59b6; /* Новый цвет для кнопок */
-      border-color: white;
-    }
+        /* Button Styles */
+        .modal button {
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: #ff9800;  /* Bright orange */
+            border: none;
+            color: #1a237e;  /* Dark blue text */
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-    /* Продукты */
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 40px;
-      width: 150%;
-    }
+        .modal button:hover {
+            background-color: #f57c00;  /* Darker orange */
+            color: white;
+        }
 
-    .product {
-      width: 230px;
-      height: 330px;
-      margin: 15px;
-      text-align: center;
-      border: 1px solid #555; /* Темный бордер */
-      border-radius: 8px;
-      background-color: #2c2c2c;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transform: scale(1);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-    }
+        /* Product Section */
+        .products {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-    .product:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    }
+        .product {
+            width: 300px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-bottom: 1px solid #555;
-      transition: transform 0.3s ease-in-out;
-    }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
 
-    .product img:hover {
-      transform: scale(1.1);
-    }
+        .product-content {
+            padding: 15px;
+            text-align: center;
+        }
 
-    .product h3 {
-      margin: 10px 0;
-      font-weight: 700;
-      color: #f39c12; /* Более яркий и выразительный цвет для названий товаров */
-    }
+        .product h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-    .product button {
-      padding: 10px;
-      background-color: #3498db; /* Новый цвет кнопок */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, box-shadow 0.3s;
-      margin-top: 15px; /* Перемещаем кнопку вниз */
-    }
+        .product button {
+            padding: 10px;
+            background-color: #ff9800;  /* Bright orange */
+            border: none;
+            color: #1a237e;  /* Dark blue */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .product button:hover {
-      background-color: #2980b9; /* Более темный оттенок */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
+        .product button:hover {
+            background-color: #f57c00;  /* Darker orange */
+        }
 
-    /* Темная тема */
-    body.dark {
-      background-color: #1e1e1e;
-      color: #ececec;
-    }
-
-    body.dark .menu {
-      background-color: #232323;
-    }
-
-    body.dark .menu button,
-    body.dark .menu a {
-      background-color: #9b59b6;
-      color: white;
-      border: 2px solid #9b59b6;
-    }
-
-    body.dark .menu button:hover,
-    body.dark .menu a:hover {
-      background-color: #ececec;
-      color: #9b59b6;
-      border-color: #9b59b6;
-    }
-
-    body.dark .product button {
-      background-color: #3498db;
-    }
-
-    body.dark .product button:hover {
-      background-color: #2980b9;
-    }
-
-    /* Светлая тема */
-    body:not(.dark) {
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    body:not(.dark) .menu {
-      background-color: #34495e;
-    }
-
-    body:not(.dark) .menu button,
-    body:not(.dark) .menu a {
-      background-color: #3498db;
-      color: white;
-      border: 2px solid #3498db;
-    }
-
-    body:not(.dark) .menu button:hover,
-    body:not(.dark) .menu a:hover {
-      background-color: #2980b9;
-      color: white;
-      border-color: #2980b9;
-    }
-
-    body:not(.dark) .product button {
-      background-color: #3498db;
-    }
-
-    body:not(.dark) .product button:hover {
-      background-color: #2980b9;
-    }
-
-    /* Закрытие кнопки меню */
-    .menu .close-button {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #ececec;
-      background-color: #e74c3c;
-      border: 2px solid #e74c3c;
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 1em;
-      border-radius: 8px;
-      text-align: center;
-      width: auto;
-      min-width: 150px;
-      transition: background-color 0.3s;
-    }
-
-    .menu .close-button:hover {
-      background-color: #ecf0f1;
-      color: #e74c3c;
-      border-color: #e74c3c;
-    }
-
-    /* Закрытие кнопки меню на темной теме */
-    body.dark .menu .close-button {
-      background-color: #2c3e50;
-      color: white;
-      border-color: #34495e;
-    }
-
-    body.dark .menu .close-button:hover {
-      background-color: #34495e;
-      color: #e74c3c;
-      border-color: #e74c3c;
-    }
-
-    /* Анимации */
-    .product, .menu button {
-      transition: transform 0.3s ease, background-color 0.3s;
-    }
-
-    .product:hover, .menu button:hover {
-      transform: scale(1.05);
-    }
-
-    .menu {
-      transition: left 0.3s ease-out;
-      opacity: 1;
-      z-index: 1000;
-    }
-
-    .menu.closed {
-      left: -300px;
-    }
-  </style>
+        .product:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-    <h1>Toshkent Dark Store</h1>
-  </header>
-
-  <div id="menu" class="menu">
-    <ul>
-      <li><button onclick="toggleTheme()">Переключение темы</button></li>
-      <li><button onclick="toggleLanguage()">Переключение языка</button></li>
-      <li><a href="#" id="operator">Оператор</a></li>
-      <li><a href="#" id="about-us">О нас</a></li>
-    </ul>
-    <button onclick="closeMenu()" class="close-button">×</button>
-  </div>
-
-  <main>
-    <div class="products">
-      <div class="product">
-        <img src="1-photo.jpeg" alt="Товар 1">
-        <h3>Товар 1</h3>
-        <button onclick="window.location.href='ССЫЛКА1'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="2-photo.jpeg" alt="Товар 2">
-        <h3>Товар 2</h3>
-        <button onclick="window.location.href='ССЫЛКА2'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="3-photo.jpeg" alt="Товар 3">
-        <h3>Товар 3</h3>
-        <button onclick="window.location.href='ССЫЛКА3'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="4-photo.jpeg" alt="Товар 4">
-        <h3>Товар 4</h3>
-        <button onclick="window.location.href='ССЫЛКА4'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="5-photo.jpeg" alt="Товар 5">
-        <h3>Товар 5</h3>
-        <button onclick="window.location.href='ССЫЛКА5'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="6-photo.jpeg" alt="Товар 6">
-        <h3>Товар 6</h3>
-        <button onclick="window.location.href='ССЫЛКА6'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="7-photo.jpeg" alt="Товар 7">
-        <h3>Товар 7</h3>
-        <button onclick="window.location.href='ССЫЛКА7'">Подробнее</button>
-      </div>
-      <div class="product">
-        <img src="8-photo.jpeg" alt="Товар 8">
-        <h3>Товар 8</h3>
-        <button onclick="window.location.href='ССЫЛКА8'">Подробнее</button>
-      </div>
+<body class="light-mode">
+    <div class="navbar">
+        <div class="hamburger" onclick="toggleModal()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  </main>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.left = menu.style.left === '0px' ? '-300px' : '0px';
-    }
+    <div class="modal" id="modal">
+        <button id="closeBtn" onclick="toggleModal()">Закрыть</button>
+        <button id="themeBtn" onclick="toggleTheme()">Переключить тему</button>
+        <button id="langBtn" onclick="toggleLanguage()">Сменить язык</button>
+        <button id="aboutBtn" onclick="window.location.href = 'about.html';">О нас</button>  <!-- Fourth button: "About Us" -->
+    </div>
 
-    function closeMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.left = '-300px';
-    }
+    <div class="content">
+        <h1 id="greeting">Добро пожаловать на сайт!</h1>
+        <p id="description">Это контент на русском языке.</p>
+    </div>
 
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-    }
+    <!-- Product Section -->
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/300x200" alt="Product 1">
+            <div class="product-content">
+                <h3>Продукт 1</h3>
+                <p>Описание продукта 1.</p>
+                <button>Узнать больше</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x200" alt="Product 2">
+            <div class="product-content">
+                <h3>Продукт 2</h3>
+                <p>Описание продукта 2.</p>
+                <button>Узнать больше</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x200" alt="Product 3">
+            <div class="product-content">
+                <h3>Продукт 3</h3>
+                <p>Описание продукта 3.</p>
+                <button>Узнать больше</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x200" alt="Product 4">
+            <div class="product-content">
+                <h3>Продукт 4</h3>
+                <p>Описание продукта 4.</p>
+                <button>Узнать больше</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x200" alt="Product 5">
+            <div class="product-content">
+                <h3>Продукт 5</h3>
+                <p>Описание продукта 5.</p>
+                <button>Узнать больше</button>
+            </div>
+        </div>
+    </div>
 
-    let currentLanguage = 'ru';
-    function toggleLanguage() {
-      if (currentLanguage === 'ru') {
-        currentLanguage = 'uz';
-        document.querySelector('h1').innerText = 'Toshkent Dark Store';
-        document.getElementById('operator').innerText = 'Operator';
-        document.querySelectorAll('.product h3')[0].innerText = 'Tovar 1';
-        document.querySelectorAll('.product h3')[1].innerText = 'Tovar 2';
-        document.querySelectorAll('.product h3')[2].innerText = 'Tovar 3';
-        document.querySelectorAll('.product h3')[3].innerText = 'Tovar 4';
-        document.querySelectorAll('.product h3')[4].innerText = 'Tovar 5';
-        document.querySelectorAll('.product h3')[5].innerText = 'Tovar 6';
-        document.querySelectorAll('.product h3')[6].innerText = 'Tovar 7';
-        document.querySelectorAll('.product h3')[7].innerText = 'Tovar 8';
-      } else {
-        currentLanguage = 'ru';
-        document.querySelector('h1').innerText = 'Toshkent Dark Store';
-        document.getElementById('operator').innerText = 'Оператор';
-        document.querySelectorAll('.product h3')[0].innerText = 'Товар 1';
-        document.querySelectorAll('.product h3')[1].innerText = 'Товар 2';
-        document.querySelectorAll('.product h3')[2].innerText = 'Товар 3';
-        document.querySelectorAll('.product h3')[3].innerText = 'Товар 4';
-        document.querySelectorAll('.product h3')[4].innerText = 'Товар 5';
-        document.querySelectorAll('.product h3')[5].innerText = 'Товар 6';
-        document.querySelectorAll('.product h3')[6].innerText = 'Товар 7';
-        document.querySelectorAll('.product h3')[7].innerText = 'Товар 8';
-      }
-    }
+    <script>
+        let currentLanguage = 'ru'; // default language is Russian
 
-    document.getElementById('about-us').addEventListener('click', function() {
-      window.location.href = 'ССЫЛКА3';
-    });
-  </script>
+        function toggleModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const navbar = document.querySelector('.navbar');
+            const modal = document.querySelector('.modal');
+
+            // Toggle light and dark modes
+            body.classList.toggle('dark-mode');
+            navbar.classList.toggle('dark-mode');
+            modal.classList.toggle('dark-mode');
+        }
+
+        function toggleLanguage() {
+            if (currentLanguage === 'ru') {
+                currentLanguage = 'uz'; // Switch to Uzbek
+                document.getElementById('greeting').textContent = 'Saytga xush kelibsiz!';
+                document.getElementById('description').textContent = 'Bu rus tilidagi kontent.';
+
+                // Change button text to Uzbek
+                document.getElementById('closeBtn').textContent = 'Yopish';
+                document.getElementById('themeBtn').textContent = 'Mavzuni o\'zgartirish';
+                document.getElementById('langBtn').textContent = 'Tilni o\'zgartirish';
+                document.getElementById('aboutBtn').textContent = 'Biz haqimizda';
+
+                // Update product details for Uzbek
+                const products = document.querySelectorAll('.product');
+                products.forEach((product, index) => {
+                    product.querySelector('h3').textContent = `Mahsulot ${index + 1}`;
+                    product.querySelector('p').textContent = `Mahsulot ${index + 1} haqida ma'lumot.`;
+                });
+            } else {
+                currentLanguage = 'ru'; // Switch back to Russian
+                document.getElementById('greeting').textContent = 'Добро пожаловать на сайт!';
+                document.getElementById('description').textContent = 'Это контент на русском языке.';
+
+                // Change button text back to Russian
+                document.getElementById('closeBtn').textContent = 'Закрыть';
+                document.getElementById('themeBtn').textContent = 'Переключить тему';
+                document.getElementById('langBtn').textContent = 'Сменить язык';
+                document.getElementById('aboutBtn').textContent = 'О нас';
+
+                // Update product details for Russian
+                const products = document.querySelectorAll('.product');
+                products.forEach((product, index) => {
+                    product.querySelector('h3').textContent = `Продукт ${index + 1}`;
+                    product.querySelector('p').textContent = `Описание продукта ${index + 1}.`;
+                });
+            }
+        }
+    </script>
 </body>
 </html>

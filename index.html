@@ -35,7 +35,7 @@
         /* Navbar Styles with Gradient */
         .navbar {
             width: 100%;
-            height: 80px;  /* Reduced height */
+            height: 120px;  /* Increased height */
             background: linear-gradient(90deg, #2196f3, #4caf50);  /* Bright gradient */
             color: white;
             display: flex;
@@ -46,7 +46,7 @@
         }
 
         .navbar h1 {
-            font-size: 20px;
+            font-size: 28px;  /* Increased font size */
             margin: 0;
             text-align: center;
             flex-grow: 1;
@@ -163,9 +163,52 @@
             transform: scale(1.05);
         }
 
+        /* Hidden description */
+        .product .full-description {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
         /* Dark Mode - Red Text for Products */
         body.dark-mode .product-content {
             color: #f44336;  /* Red text for products */
+        }
+
+        /* Form styles */
+        .order-form {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .order-form input,
+        .order-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+        }
+
+        .order-form button {
+            background-color: #ff9800;
+            padding: 12px 25px;
+            border: none;
+            color: #1a237e;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .order-form button:hover {
+            background-color: #f57c00;
         }
     </style>
 </head>
@@ -183,7 +226,7 @@
         <button id="closeBtn" onclick="toggleModal()">Закрыть</button>
         <button id="themeBtn" onclick="toggleTheme()">Переключить тему</button>
         <button id="langBtn" onclick="toggleLanguage()">Сменить язык</button>
-        <button id="aboutBtn" onclick="window.location.href = 'about.html';">О нас</button>  <!-- Fourth button: "About Us" -->
+        <button id="aboutBtn" onclick="window.location.href = 'about.html';">О нас</button>
     </div>
 
     <!-- Product Section -->
@@ -193,45 +236,84 @@
             <div class="product-content">
                 <h3>Продукт 1</h3>
                 <p>Описание продукта 1.</p>
-                <button>Узнать больше</button>
+                <button onclick="toggleOrderForm('product1')">Заказать</button>
+                <div class="order-form" id="orderForm_product1">
+                    <h3>Введите свои данные для заказа:</h3>
+                    <input type="text" placeholder="Ваше имя" id="name_product1">
+                    <input type="text" placeholder="Телефон" id="phone_product1">
+                    <textarea placeholder="Комментарий" id="comment_product1"></textarea>
+                    <button onclick="sendOrderToTelegram('Продукт 1', 'product1')">Отправить заказ</button>
+                </div>
             </div>
         </div>
+
         <div class="product">
             <img src="res/2.jpg" alt="Product 2">
             <div class="product-content">
                 <h3>Продукт 2</h3>
                 <p>Описание продукта 2.</p>
-                <button>Узнать больше</button>
+                <button onclick="toggleOrderForm('product2')">Заказать</button>
+                <div class="order-form" id="orderForm_product2">
+                    <h3>Введите свои данные для заказа:</h3>
+                    <input type="text" placeholder="Ваше имя" id="name_product2">
+                    <input type="text" placeholder="Телефон" id="phone_product2">
+                    <textarea placeholder="Комментарий" id="comment_product2"></textarea>
+                    <button onclick="sendOrderToTelegram('Продукт 2', 'product2')">Отправить заказ</button>
+                </div>
             </div>
         </div>
+
         <div class="product">
             <img src="res/3.jpg" alt="Product 3">
             <div class="product-content">
                 <h3>Продукт 3</h3>
                 <p>Описание продукта 3.</p>
-                <button>Узнать больше</button>
+                <button onclick="toggleOrderForm('product3')">Заказать</button>
+                <div class="order-form" id="orderForm_product3">
+                    <h3>Введите свои данные для заказа:</h3>
+                    <input type="text" placeholder="Ваше имя" id="name_product3">
+                    <input type="text" placeholder="Телефон" id="phone_product3">
+                    <textarea placeholder="Комментарий" id="comment_product3"></textarea>
+                    <button onclick="sendOrderToTelegram('Продукт 3', 'product3')">Отправить заказ</button>
+                </div>
             </div>
         </div>
+
         <div class="product">
             <img src="res/4.jpg" alt="Product 4">
             <div class="product-content">
                 <h3>Продукт 4</h3>
                 <p>Описание продукта 4.</p>
-                <button>Узнать больше</button>
+                <button onclick="toggleOrderForm('product4')">Заказать</button>
+                <div class="order-form" id="orderForm_product4">
+                    <h3>Введите свои данные для заказа:</h3>
+                    <input type="text" placeholder="Ваше имя" id="name_product4">
+                    <input type="text" placeholder="Телефон" id="phone_product4">
+                    <textarea placeholder="Комментарий" id="comment_product4"></textarea>
+                    <button onclick="sendOrderToTelegram('Продукт 4', 'product4')">Отправить заказ</button>
+                </div>
             </div>
         </div>
+
         <div class="product">
             <img src="res/5.jpg" alt="Product 5">
             <div class="product-content">
                 <h3>Продукт 5</h3>
                 <p>Описание продукта 5.</p>
-                <button>Узнать больше</button>
+                <button onclick="toggleOrderForm('product5')">Заказать</button>
+                <div class="order-form" id="orderForm_product5">
+                    <h3>Введите свои данные для заказа:</h3>
+                    <input type="text" placeholder="Ваше имя" id="name_product5">
+                    <input type="text" placeholder="Телефон" id="phone_product5">
+                    <textarea placeholder="Комментарий" id="comment_product5"></textarea>
+                    <button onclick="sendOrderToTelegram('Продукт 5', 'product5')">Отправить заказ</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        let currentLanguage = 'ru'; // default language is Russian
+        let currentLanguage = 'ru';  // Initial language set to Russian
 
         function toggleModal() {
             const modal = document.getElementById('modal');
@@ -239,50 +321,58 @@
         }
 
         function toggleTheme() {
-            const body = document.body;
-            const navbar = document.querySelector('.navbar');
-            const modal = document.querySelector('.modal');
-
-            // Toggle light and dark modes
-            body.classList.toggle('dark-mode');
-            navbar.classList.toggle('dark-mode');
-            modal.classList.toggle('dark-mode');
+            document.body.classList.toggle('dark-mode');
         }
 
         function toggleLanguage() {
             if (currentLanguage === 'ru') {
-                currentLanguage = 'uz'; // Switch to Uzbek
-                document.getElementById('greeting').textContent = 'Saytga xush kelibsiz!';
-
-                // Change button text to Uzbek
+                currentLanguage = 'uz';
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                document.getElementById('greeting').textContent = 'Xush kelibsiz!';
                 document.getElementById('closeBtn').textContent = 'Yopish';
                 document.getElementById('themeBtn').textContent = 'Mavzuni o\'zgartirish';
                 document.getElementById('langBtn').textContent = 'Tilni o\'zgartirish';
                 document.getElementById('aboutBtn').textContent = 'Biz haqimizda';
-
-                // Update product details for Uzbek
-                const products = document.querySelectorAll('.product');
-                products.forEach((product, index) => {
-                    product.querySelector('h3').textContent = `Mahsulot ${index + 1}`;
-                    product.querySelector('p').textContent = `Mahsulot ${index + 1} haqida ma'lumot.`;
-                });
             } else {
-                currentLanguage = 'ru'; // Switch back to Russian
+                currentLanguage = 'ru';
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
                 document.getElementById('greeting').textContent = 'Добро пожаловать на сайт!';
-
-                // Change button text to Russian
                 document.getElementById('closeBtn').textContent = 'Закрыть';
                 document.getElementById('themeBtn').textContent = 'Переключить тему';
                 document.getElementById('langBtn').textContent = 'Сменить язык';
                 document.getElementById('aboutBtn').textContent = 'О нас';
-
-                // Update product details for Russian
-                const products = document.querySelectorAll('.product');
-                products.forEach((product, index) => {
-                    product.querySelector('h3').textContent = `Продукт ${index + 1}`;
-                    product.querySelector('p').textContent = `Описание продукта ${index + 1}.`;
-                });
             }
+        }
+
+        function toggleOrderForm(productId) {
+            const orderForm = document.getElementById(`orderForm_${productId}`);
+            orderForm.style.display = orderForm.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function sendOrderToTelegram(productName, productId) {
+            const name = document.getElementById(`name_${productId}`).value;
+            const phone = document.getElementById(`phone_${productId}`).value;
+            const comment = document.getElementById(`comment_${productId}`).value;
+
+            const message = `Заказ на продукт: ${productName}\nИмя: ${name}\nТелефон: ${phone}\nКомментарий: ${comment}`;
+            const token = '7857347951:AAFUGfGJlqSccNEk458GFUcY6bR3r01FK0w';  // Replace with your bot token
+            const chatId = '7518382960';   // Replace with your chat ID
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('Ваш заказ отправлен в Telegram!');
+                        document.getElementById(`orderForm_${productId}`).style.display = 'none';  // Hide form after submit
+                    } else {
+                        alert('Произошла ошибка при отправке заказа.');
+                    }
+                })
+                .catch(error => {
+                    alert('Произошла ошибка.');
+                });
         }
     </script>
 </body>
